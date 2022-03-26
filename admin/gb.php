@@ -4,16 +4,13 @@ if (!isset($_SESSION['login_user'])) {
 	header("location: login.php");
 }
 
-$sql = 'SELECT * FROM guestbook';
+$sql = 'SELECT * FROM guestbook WHERE id=?';
 
 $q = $pdo->prepare($sql);
-$q->execute();
+$q->execute([$_GET['id']]);
 $q->setFetchMode(PDO::FETCH_ASSOC);
 
-echo "<h1>Fans Message</h1>";
-echo "<ul>";
 while ($r = $q->fetch()) {
-  echo "<li><a href='gb.php?id=".$r['id']."'>".$r['name']."</li>";
+  echo $r['message'];
 }
-echo "</ul>";
 ?>
