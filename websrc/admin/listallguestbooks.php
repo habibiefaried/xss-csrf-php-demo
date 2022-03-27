@@ -13,7 +13,7 @@ $q->setFetchMode(PDO::FETCH_ASSOC);
 echo "<h1>Fans Message</h1>";
 echo "<ul>";
 while ($r = $q->fetch()) {
-  echo "<li><a href='gb.php?id=".$r['id']."'>".$r['name']."</li>";
+  echo "<li><a href='gb.php?id=".$r['id']."'>".htmlspecialchars($r['name'])."</li>";
 }
 echo "</ul>";
 ?>
